@@ -39,6 +39,21 @@ resource "aws_security_group" "main_security_group" {
         protocol = "tcp"
         cidr_blocks = ["${var.source_cidr_block}"]
     }
+    // allow traffic for TCP 8301 (consul)
+    ingress {
+        from_port = 8301
+        to_port = 8301
+        protocol = "tcp"
+        cidr_blocks = ["${var.source_cidr_block}"]
+    }
+
+    // allow traffic for TCP 8301 (consul)
+    ingress {
+        from_port = 8301
+        to_port = 8301
+        protocol = "udp"
+        cidr_blocks = ["${var.source_cidr_block}"]
+    }
 
     // allow traffic for TCP 6627 (Nimbus)
     ingress {
@@ -59,7 +74,7 @@ resource "aws_security_group" "main_security_group" {
     // allow traffic for TCP 6700-6703 (Supervisor)
     ingress {
         from_port = 6700
-        to_port = 6703
+        to_port = 6706
         protocol = "tcp"
         cidr_blocks = ["${var.source_cidr_block}"]
     }
